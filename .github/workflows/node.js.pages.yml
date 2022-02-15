@@ -19,6 +19,7 @@ jobs:
         node-version: 16.x
         cache: 'npm'
     - run: npm ci
+    - run: node src\data\generate_questions.mjs
     - run: npm run build --if-present
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4.2.3
