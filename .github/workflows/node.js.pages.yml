@@ -22,7 +22,7 @@ jobs:
     - run: node src/data/generate_questions.mjs
     - run: npm run build --if-present
       env:
-        max_old_space_size: 4096 
+        NODE_OPTIONS: "--max_old_space_size=4096" 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4.2.3
       with:
