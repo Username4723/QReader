@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import fetch from 'node-fetch';
 
-const questions_limit = -2000;
+const questions_limit = 200;
 
 // Download from URL and return text
 async function get_data(url) {
