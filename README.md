@@ -1,24 +1,4 @@
 # scibowl2
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Datasources:
+- SciBowlDB <https://scibowldb.com/>
+- QUANTA <https://sites.google.com/view/qanta/home>, who sourced from ProtoBowl and QuizDB
