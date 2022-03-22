@@ -87,9 +87,10 @@ import CustomTimers from './components/CustomTimers.vue'
 import FilterCategories from './components/FilterCategories.vue'
 import FilterSimple from './components/FilterSimple.vue'
 
-
 import QuestionDual from './components/questions/QuestionDual.vue'
 import QuestionNormal from './components/questions/QuestionNormal.vue'
+
+import JsonOptimize from 'json-optimize'
 
 export default {
   name: 'App',
@@ -162,8 +163,6 @@ export default {
         return object;
       }),
 
-
-
       selected_competition: "sciencebowl",
 
       round_questions: undefined,
@@ -171,7 +170,7 @@ export default {
 
       loading: false,
       loaded_data: {},
-      publicPath: process.env.BASE_URL
+      unpack: new JsonOptimize().unpack
     }
   },
 
@@ -189,8 +188,8 @@ export default {
       handler: async function(newValue) {
         if (this.loaded_data[newValue] == null) {
           this.loading = true
-          this.axios.get(`${this.publicPath}questions_${newValue}.json`).then(response => {
-            this.loaded_data[newValue] = response.data
+          this.axios.get(`/questions_${newValue}.json`).then(response => {
+            this.loaded_data[newValue] = this.unpack(response.data)
             this.loading = false
           })
         }
