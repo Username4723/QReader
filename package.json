@@ -10,9 +10,12 @@
   "dependencies": {
     "@mdi/font": "6.5.95",
     "axios": "^0.26.1",
+    "browserify-zlib": "^0.2.0",
+    "compress-json": "^2.0.1",
     "core-js": "^3.21.1",
-    "json-optimize": "^0.1.1",
     "node-fetch": "^3.2.3",
+    "node-gzip": "^1.1.2",
+    "node-polyfill-webpack-plugin": "^1.1.4",
     "roboto-fontface": "*",
     "vue": "^3.2.31",
     "vue-axios": "^3.4.1",

@@ -1,9 +1,8 @@
-import * as fs from 'fs';
-import fetch from 'node-fetch';
-import JsonOptimize from 'json-optimize';
+import * as fs from 'fs'
+import fetch from 'node-fetch'
+import { compress } from 'compress-json'
 
 const questions_limit = -1;
-const optimizer = new JsonOptimize();
 
 // Download from URL and return text
 async function get_data(url) {
@@ -59,7 +58,7 @@ async function save_questions(name, link, cleaner) {
   let { questions, metadata } = analyze_questions(data)
 
   // Save data
-  fs.writeFileSync(`./public/questions_${name}.json`, JSON.stringify(optimizer.pack(questions)))
+  fs.writeFileSync(`./public/questions_${name}.json`, JSON.stringify(compress(questions)))
   fs.writeFileSync(`./src/assets/questions_${name}_metadata.json`, JSON.stringify(metadata))
   console.log(`Saved ${questions.length} ${name} questions`)
 }

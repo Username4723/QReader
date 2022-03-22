@@ -90,7 +90,8 @@ import FilterSimple from './components/FilterSimple.vue'
 import QuestionDual from './components/questions/QuestionDual.vue'
 import QuestionNormal from './components/questions/QuestionNormal.vue'
 
-import JsonOptimize from 'json-optimize'
+import { decompress } from 'compress-json'
+
 
 export default {
   name: 'App',
@@ -170,7 +171,6 @@ export default {
 
       loading: false,
       loaded_data: {},
-      unpack: new JsonOptimize().unpack,
       publicPath: process.env.BASE_URL
     }
   },
@@ -189,8 +189,8 @@ export default {
       handler: async function(newValue) {
         if (this.loaded_data[newValue] == null) {
           this.loading = true
-          this.axios.get(`${this.publicPath}questions_${newValue}.json`).then(response => {
-            this.loaded_data[newValue] = this.unpack(response.data)
+          this.axios.get(`${this.publicPath}questions_${newValue}.json`).then(async response => {
+            this.loaded_data[newValue] = decompress(response.data)
             this.loading = false
           })
         }
