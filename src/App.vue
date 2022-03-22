@@ -119,13 +119,6 @@ export default {
     },
 
     async generate_round() {
-      if (this.loaded_data[this.selected_competition] == null) {
-        this.loading = true
-        this.loaded_data[this.selected_competition] = require(`./data/questions_${this.selected_competition}.json`)
-        this.loading = false
-      }
-
-
       this.round_questions = this.random_questions()
       this.scores = {
         red: 0,
@@ -189,6 +182,19 @@ export default {
         window.api.send("scores-send", JSON.stringify(newValue));
       },
       deep: true
+    },
+
+    selected_competition: {
+      handler: function(newValue) {
+        if (this.loaded_data[newValue] == null) {
+          this.loading = true
+          import(`@/data/questions_${newValue}.json`).then(module => {
+            this.loaded_data[newValue] = module.default;
+            this.loading = false
+          })
+        }
+      },
+      immediate: true
     }
   }
 }
