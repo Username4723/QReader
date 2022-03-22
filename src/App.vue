@@ -170,7 +170,8 @@ export default {
 
       loading: false,
       loaded_data: {},
-      unpack: new JsonOptimize().unpack
+      unpack: new JsonOptimize().unpack,
+      publicPath: process.env.BASE_URL
     }
   },
 
@@ -188,7 +189,7 @@ export default {
       handler: async function(newValue) {
         if (this.loaded_data[newValue] == null) {
           this.loading = true
-          this.axios.get(`/questions_${newValue}.json`).then(response => {
+          this.axios.get(`${this.publicPath}questions_${newValue}.json`).then(response => {
             this.loaded_data[newValue] = this.unpack(response.data)
             this.loading = false
           })
