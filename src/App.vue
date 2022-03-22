@@ -170,7 +170,8 @@ export default {
       scores: undefined,
 
       loading: false,
-      loaded_data: {}
+      loaded_data: {},
+      publicPath: process.env.BASE_URL
     }
   },
 
@@ -185,11 +186,11 @@ export default {
     },
 
     selected_competition: {
-      handler: function(newValue) {
+      handler: async function(newValue) {
         if (this.loaded_data[newValue] == null) {
           this.loading = true
-          import(`@/data/questions_${newValue}.json`).then(module => {
-            this.loaded_data[newValue] = module.default;
+          this.axios.get(`${this.publicPath}questions_${newValue}.json`).then(response => {
+            this.loaded_data[newValue] = response.data
             this.loading = false
           })
         }

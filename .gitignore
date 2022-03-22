@@ -23,4 +23,6 @@ pnpm-debug.log*
 *.sw?
 
 # Data files
-src/data/*.json
+data/*.json
+public/*.json
+src/assets/*.json

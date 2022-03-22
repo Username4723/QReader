@@ -41,7 +41,7 @@ function analyze_questions(questions) {
 }
 
 async function save_questions(name, link, cleaner) {
-  const raw_file = `./src/data/questions_${name}_raw.json`
+  const raw_file = `./data/questions_${name}_raw.json`
 
   // If data file exists, read it and load it. Otherwise, download it
   let data = undefined;
@@ -57,8 +57,8 @@ async function save_questions(name, link, cleaner) {
   let { questions, metadata } = analyze_questions(data)
 
   // Save data
-  fs.writeFileSync(`./src/data/questions_${name}.json`, JSON.stringify(questions))
-  fs.writeFileSync(`./src/data/questions_${name}_metadata.json`, JSON.stringify(metadata))
+  fs.writeFileSync(`./public/questions_${name}.json`, JSON.stringify(questions))
+  fs.writeFileSync(`./src/assets/questions_${name}_metadata.json`, JSON.stringify(metadata))
   console.log(`Saved ${questions.length} ${name} questions`)
 }
 

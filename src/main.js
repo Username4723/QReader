@@ -3,15 +3,19 @@ import App from './App.vue'
 import vuetify from './plugins/vuetify'
 import { loadFonts } from './plugins/webfontloader'
 
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
 loadFonts()
 
 const app = createApp(App)
   .use(vuetify)
+  .use(VueAxios, axios)
 
 // Load the configs for each comp
 app.config.globalProperties.$competitions = {
   sciencebowl: {
-    ...require("./data/questions_sciencebowl_metadata.json"),
+    ...require("@/assets/questions_sciencebowl_metadata.json"),
     name: "National Science Bowl",
     points: [4, 10], // Use for all possible point values
     timers: { // Can be either an array of numbers or an object
@@ -24,7 +28,7 @@ app.config.globalProperties.$competitions = {
     eachCategoryHasEquualWeight: true // This also applies to subcategories
   },
   quizbowl: {
-    ...require("./data/questions_quizbowl_metadata.json"),
+    ...require("@/assets/questions_quizbowl_metadata.json"),
     name: "Quiz Bowl",
     points: [5, 10],
     timers: [10, 30, 45, 60, 90, 120],
